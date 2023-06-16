@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:latest
+    cap_add:
+      - SYS_NICE
+    environment:
+      - MYSQL_DATABASE=rosdistant_example
+      - MYSQL_ROOT_PASSWORD=pass
+    ports:
+      - '3306:3306'
