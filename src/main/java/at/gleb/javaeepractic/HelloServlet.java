@@ -56,7 +56,12 @@ public class HelloServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
-        addAnimalToDb();
+        try {
+            addAnimalToDb();
+        } catch (Exception e) {
+            sb.append(e);
+            message = sb.toString();
+        }
 
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
@@ -69,11 +74,12 @@ public class HelloServlet extends HttpServlet {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
     private void addAnimalToDb() {
+
         try {
             String animal = generateRandomAnimal();
 

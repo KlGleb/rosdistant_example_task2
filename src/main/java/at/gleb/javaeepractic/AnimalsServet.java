@@ -74,7 +74,7 @@ public class AnimalsServet extends HttpServlet {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }
