@@ -5,7 +5,7 @@
     <title>Создание животного</title>
 </head>
 <body>
-<h1><%= "Это JSP" %>
+<h1><%= "Создание животного" %>
 </h1>
 <br/>
 <jsp:include page="navigation.jsp" />

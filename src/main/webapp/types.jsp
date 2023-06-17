@@ -5,7 +5,7 @@
     <title>Типы</title>
 </head>
 <body>
-<h1><%= "Это JSP" %>
+<h1><%= "Типы" %>
 </h1>
 <br/>
 <jsp:include page="navigation.jsp" />

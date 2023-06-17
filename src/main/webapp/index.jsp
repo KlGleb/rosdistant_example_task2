@@ -5,7 +5,7 @@
     <title>Главная</title>
 </head>
 <body>
-<h1><%= "Это JSP" %>
+<h1><%= "Главная" %>
 </h1>
 <br/>
 <jsp:include page="navigation.jsp" />
