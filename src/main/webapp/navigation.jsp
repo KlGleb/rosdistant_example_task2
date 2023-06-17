@@ -8,8 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav>
   <a href="">Главная</a> |
-  <a href="/animals">Животные</a> |
-  <a href="/types">Типы</a> |
-  <a href="/createAnimal">Создание животного</a>
-  <a href="/createType">Создание типа</a>
+  <a href="animals.jsp">Животные</a> |
+  <a href="types.jsp">Типы</a> |
+  <a href="createAnimal.jsp">Создание животного</a> |
+  <a href="createType.jsp">Создание типа</a>
 </nav>

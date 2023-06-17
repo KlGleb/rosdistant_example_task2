@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Главная</title>
+    <title>Типы</title>
 </head>
 <body>
 <h1><%= "Это JSP" %>
