@@ -8,7 +8,6 @@
 <h1><%= "Это JSP" %>
 </h1>
 <br/>
-<a href="hello-servlet">Сервлет, добавляющий случайное животное в таблицу animals</a><br/>
-<a href="animals-servlet">Сервлет, показывающий содержимое таблицы animals</a><br/>
+<jsp:include page="navigation.jsp" />
 </body>
 </html>
