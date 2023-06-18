@@ -1,6 +1,7 @@
 package at.gleb.javaeepractic;
 
 import at.gleb.javaeepractic.data.AnimalDto;
+import at.gleb.javaeepractic.data.AnimalTypeDto;
 import at.gleb.javaeepractic.data.AnimalsGetter;
 import at.gleb.javaeepractic.di.Dependencies;
 import jakarta.servlet.ServletException;
@@ -19,6 +20,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 @WebServlet(name = "animalsServlet", value = "/animals-servlet")
@@ -30,20 +32,27 @@ public class AnimalsServet extends HttpServlet {
 
         List<AnimalDto> animals = animalsGetter.getAnimals(null, null);
 
+        List<AnimalTypeDto> types = Dependencies.getInstance().getAnimalsTypeGetter().getTypes(null, null);
+        HashMap<Integer, String> typeNamesMap = new HashMap<>();
+
+        for (AnimalTypeDto type : types) {
+            typeNamesMap.put(type.getId(), type.getName());
+        }
+
         PrintWriter out = response.getWriter();
         out.println("<table>");
 
         out.println("<tr>");
         out.println("<td>id</td>");
-        out.println("<td>name</td>");
-        out.println("<td>type</td>");
+        out.println("<td>Название</td>");
+        out.println("<td>Тип</td>");
         out.println("</tr>");
 
         for (AnimalDto animal : animals) {
             out.println("<tr>");
             out.println("<td>" + animal.getId() + "</td>");
             out.println("<td>" + animal.getName() + "</td>");
-            out.println("<td>" + animal.getTypeId() + "</td>");
+            out.println("<td>" + typeNamesMap.get(animal.getTypeId()) + "</td>");
             out.println("</tr>");
         }
         out.println("</table>");
