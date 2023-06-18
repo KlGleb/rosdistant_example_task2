@@ -10,6 +10,7 @@ import java.util.Random;
 import at.gleb.javaeepractic.data.AnimalDto;
 import at.gleb.javaeepractic.data.AnimalTypeDto;
 import at.gleb.javaeepractic.di.Dependencies;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -45,5 +46,19 @@ public class TypesServlet extends HttpServlet {
             out.println("</tr>");
         }
         out.println("</table>");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        // получаем данные формы
+        final String name = req.getParameter("name");
+        final int approxCount = Integer.parseInt(req.getParameter("approx_count"));
+
+        // создаем животное с помощью метода createAnimal() из класса AnimalsGetter
+        Dependencies.getInstance().getAnimalsTypeGetter().createType(name, approxCount);
+
+        // перенаправляем пользователя на страницу animals.jsp
+        resp.sendRedirect("types.jsp");
     }
 }

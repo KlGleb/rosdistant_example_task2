@@ -82,13 +82,12 @@ public class AnimalsTypeGetterImpl implements AnimalsTypeGetter {
     }
 
     @Override
-    public void createType(String name, int typeId, int approxCount) {
+    public void createType(String name, int approxCount) {
         try {
-            String query = "INSERT INTO types (name, typeId, approx_count) VALUES (?, ?, ?)";
+            String query = "INSERT INTO types (name, approx_count) VALUES (?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
-            statement.setInt(2, typeId);
-            statement.setInt(3, approxCount);
+            statement.setInt(2, approxCount);
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {

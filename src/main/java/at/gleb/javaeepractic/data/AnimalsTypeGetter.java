@@ -6,7 +6,7 @@ public interface AnimalsTypeGetter {
     List<AnimalTypeDto> getTypes(String name, Integer minCount);
     AnimalTypeDto getType(int id);
 
-    void createType(String name, int typeId, int approxCount);
+    void createType(String name, int approxCount);
 
     void editType(int id, String name, int typeId);
 
