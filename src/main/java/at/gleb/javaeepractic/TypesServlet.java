@@ -36,13 +36,20 @@ public class TypesServlet extends HttpServlet {
         out.println("<td>id</td>");
         out.println("<td>Название</td>");
         out.println("<td>Приблизительное количество видов</td>");
+        out.println("<td>Удалить</td>");
         out.println("</tr>");
 
+
         for (AnimalTypeDto type : types) {
+            String deleteForm = "<form action=\"type-delete-servlet\"\" method=\"POST\">" +
+                    "<input type=\"hidden\" name=\"id\" value=\"" + +type.getId() + "\">" +
+                    "<input type=\"submit\" value=\"Удалить\">" +
+                    "</form>";
             out.println("<tr>");
             out.println("<td>" + type.getId() + "</td>");
             out.println("<td>" + type.getName() + "</td>");
             out.println("<td>" + type.getApproxCount() + "</td>");
+            out.println("<td>" + deleteForm + "</td>");
             out.println("</tr>");
         }
         out.println("</table>");
@@ -59,6 +66,13 @@ public class TypesServlet extends HttpServlet {
         Dependencies.getInstance().getAnimalsTypeGetter().createType(name, approxCount);
 
         // перенаправляем пользователя на страницу animals.jsp
+        resp.sendRedirect("types.jsp");
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getQueryString());
+        Dependencies.getInstance().getAnimalsTypeGetter().removeType(id);
         resp.sendRedirect("types.jsp");
     }
 }

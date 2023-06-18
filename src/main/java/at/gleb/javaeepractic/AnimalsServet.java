@@ -46,13 +46,19 @@ public class AnimalsServet extends HttpServlet {
         out.println("<td>id</td>");
         out.println("<td>Название</td>");
         out.println("<td>Тип</td>");
+        out.println("<td>Удалить</td>");
         out.println("</tr>");
 
         for (AnimalDto animal : animals) {
+            String deleteForm = "<form action=\"animal-delete-servlet\"\" method=\"POST\">" +
+                    "<input type=\"hidden\" name=\"id\" value=\"" + +animal.getId() + "\">" +
+                    "<input type=\"submit\" value=\"Удалить\">" +
+                    "</form>";
             out.println("<tr>");
             out.println("<td>" + animal.getId() + "</td>");
             out.println("<td>" + animal.getName() + "</td>");
             out.println("<td>" + typeNamesMap.get(animal.getTypeId()) + "</td>");
+            out.println("<td>" + deleteForm + "</td>");
             out.println("</tr>");
         }
         out.println("</table>");
