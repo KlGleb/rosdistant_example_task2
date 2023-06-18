@@ -76,7 +76,7 @@ public class AnimalsGetterImpl implements AnimalsGetter {
             resultSet.next();
             int id2 = resultSet.getInt("id");
             String name1 = resultSet.getString("name");
-            int typeId1 = resultSet.getInt("name");
+            int typeId1 = resultSet.getInt("type_id");
 
             return  (new AnimalDto(id2, name1, typeId1));
         } catch (SQLException e) {

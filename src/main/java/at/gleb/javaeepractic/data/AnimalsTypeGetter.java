@@ -8,7 +8,7 @@ public interface AnimalsTypeGetter {
 
     void createType(String name, int approxCount);
 
-    void editType(int id, String name, int typeId);
+    void editType(int id, String name, int approxCount);
 
     void removeType(int id);
 }

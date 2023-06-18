@@ -28,6 +28,7 @@ public class AnimalsServet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         final AnimalsGetter animalsGetter = Dependencies.getInstance().getAnimalsGetter();
 
         List<AnimalDto> animals = animalsGetter.getAnimals(null, null);
@@ -56,7 +57,7 @@ public class AnimalsServet extends HttpServlet {
                     "</form>";
             out.println("<tr>");
             out.println("<td>" + animal.getId() + "</td>");
-            out.println("<td>" + animal.getName() + "</td>");
+            out.println("<td><a href='animal.jsp?" + animal.getId() + "'>" + animal.getName() + "</a></td>");
             out.println("<td>" + typeNamesMap.get(animal.getTypeId()) + "</td>");
             out.println("<td>" + deleteForm + "</td>");
             out.println("</tr>");

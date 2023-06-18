@@ -47,7 +47,7 @@ public class TypesServlet extends HttpServlet {
                     "</form>";
             out.println("<tr>");
             out.println("<td>" + type.getId() + "</td>");
-            out.println("<td>" + type.getName() + "</td>");
+            out.println("<td><a href='type.jsp?" + type.getId() + "'>" + type.getName() + "</a></td>");
             out.println("<td>" + type.getApproxCount() + "</td>");
             out.println("<td>" + deleteForm + "</td>");
             out.println("</tr>");
