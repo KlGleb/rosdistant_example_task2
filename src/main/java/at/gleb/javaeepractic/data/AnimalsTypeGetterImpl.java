@@ -27,6 +27,7 @@ public class AnimalsTypeGetterImpl implements AnimalsTypeGetter {
             } else if (minCount != null) {
                 query += " WHERE approx_count >= ?";
             }
+            query += " ORDER BY approx_count DESC ";
 
             PreparedStatement statement = connection.prepareStatement(query);
 

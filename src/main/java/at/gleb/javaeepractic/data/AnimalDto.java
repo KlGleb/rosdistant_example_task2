@@ -1,10 +1,7 @@
 package at.gleb.javaeepractic.data;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
-@XmlRootElement(name = "animal")
 public class AnimalDto {
     private final int id;
     private final String name;
@@ -16,17 +13,14 @@ public class AnimalDto {
         this.typeId = typeId;
     }
 
-    @XmlElement
     public int getId() {
         return id;
     }
 
-    @XmlElement
     public String getName() {
         return name;
     }
 
-    @XmlElement
     public int getTypeId() {
         return typeId;
     }

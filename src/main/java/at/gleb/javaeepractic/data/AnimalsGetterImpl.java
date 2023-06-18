@@ -34,6 +34,8 @@ public class AnimalsGetterImpl implements AnimalsGetter {
                 selectSql += " AND type_id = ?";
             }
 
+            selectSql += " ORDER BY id";
+
             PreparedStatement selectStatement = connection.prepareStatement(selectSql);
 
             int parameterIndex = 1;
