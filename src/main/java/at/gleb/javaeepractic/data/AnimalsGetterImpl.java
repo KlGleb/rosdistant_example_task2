@@ -17,18 +17,12 @@ public class AnimalsGetterImpl implements AnimalsGetter {
     public AnimalsGetterImpl(Connection connection) {
         this.connection = connection;
 
-       /* try {
-            Context context = new InitialContext();
-            DataSource dataSource = (DataSource) context.lookup("jdbc/mysql");
-            connection = dataSource.getConnection();
 
-        } catch (NamingException | SQLException e) {
-            throw new RuntimeException(e);
-        }*/
     }
 
     @Override
     public List<AnimalDto> getAnimals(String name, Integer typeId) {
+        System.out.println("Get animals");
         try {
             String selectSql = "SELECT * FROM animals WHERE true";
 
@@ -59,10 +53,10 @@ public class AnimalsGetterImpl implements AnimalsGetter {
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name1 = resultSet.getString("name");
-                int typeId1 = resultSet.getInt("typeId");
+                int typeId1 = resultSet.getInt("type_id");
                 animalDtos.add(new AnimalDto(id, name1, typeId1));
             }
-
+            System.out.println("Animals");
             return animalDtos;
         } catch (SQLException e) {
             e.printStackTrace();

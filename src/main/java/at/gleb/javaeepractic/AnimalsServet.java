@@ -1,5 +1,8 @@
 package at.gleb.javaeepractic;
 
+import at.gleb.javaeepractic.data.AnimalDto;
+import at.gleb.javaeepractic.data.AnimalsGetter;
+import at.gleb.javaeepractic.di.Dependencies;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,65 +19,33 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "animalsServlet", value = "/animals-servlet")
 public class AnimalsServet extends HttpServlet {
-    private final StringBuilder sb = new StringBuilder();
-    private String message;
-    private Connection connection;
-    public void init() {
-        try {
-            sb.append("Устанавливается соединение с БД...<br/>");
-            Context context = new InitialContext();
-            DataSource dataSource = (DataSource) context.lookup("jdbc/mysql");
-            connection = dataSource.getConnection();
-            sb.append("Соединение с БД установлено<br/>");
-            sb.append("<br/>");
-        } catch (SQLException | NamingException e) {
-            sb.append(e);
-        } finally {
-            message = sb.toString();
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            // ... (получение соединения и другие настройки)
+        final AnimalsGetter animalsGetter = Dependencies.getInstance().getAnimalsGetter();
 
-            String selectSql = "SELECT * FROM animals";
-            PreparedStatement selectStatement = connection.prepareStatement(selectSql);
-            ResultSet resultSet = selectStatement.executeQuery();
-
-            sb.append("Содержимое таблицы animals:<br/>");
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                sb.append("ID: ").append(id).append(", Name: ").append(name).append("<br/>");
-            }
-
-        } catch (SQLException e) {
-            sb.append(e);
-        } finally {
-            message = sb.toString();
-        }
-
-        response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
+        List<AnimalDto> animals = animalsGetter.getAnimals(null, null);
 
         PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<div>" + message + "</div>");
-        out.println("</body></html>");
-    }
+        out.println("<table>");
 
-    @Override
-    public void destroy() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        out.println("<tr>");
+        out.println("<td>id</td>");
+        out.println("<td>name</td>");
+        out.println("<td>type</td>");
+        out.println("</tr>");
+
+        for (AnimalDto animal : animals) {
+            out.println("<tr>");
+            out.println("<td>" + animal.getId() + "</td>");
+            out.println("<td>" + animal.getName() + "</td>");
+            out.println("<td>" + animal.getTypeId() + "</td>");
+            out.println("</tr>");
         }
+        out.println("</table>");
     }
 }

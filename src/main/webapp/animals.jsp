@@ -9,5 +9,6 @@
 </h1>
 <br/>
 <jsp:include page="navigation.jsp" />
+<jsp:include page="animals-servlet" />
 </body>
 </html>
