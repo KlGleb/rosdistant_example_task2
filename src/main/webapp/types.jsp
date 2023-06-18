@@ -9,5 +9,6 @@
 </h1>
 <br/>
 <jsp:include page="navigation.jsp" />
+<jsp:include page="type-servlet" />
 </body>
 </html>

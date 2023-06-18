@@ -2,6 +2,8 @@ package at.gleb.javaeepractic.di;
 
 import at.gleb.javaeepractic.data.AnimalsGetter;
 import at.gleb.javaeepractic.data.AnimalsGetterImpl;
+import at.gleb.javaeepractic.data.AnimalsTypeGetter;
+import at.gleb.javaeepractic.data.AnimalsTypeGetterImpl;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -24,5 +26,9 @@ public class DependencyFabric {
 
     AnimalsGetter animalsGetter() {
         return new AnimalsGetterImpl(connection());
+    }
+
+    AnimalsTypeGetter typeGetter() {
+        return new AnimalsTypeGetterImpl(connection());
     }
 }
