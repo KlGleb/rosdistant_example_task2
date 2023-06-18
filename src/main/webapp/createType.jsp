@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Создание типа</title>
+    <jsp:include page="style.jsp" />
 </head>
 <body>
 <h1><%= "Создание типа" %>

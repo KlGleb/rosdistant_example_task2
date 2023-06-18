@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Тип</title>
+    <jsp:include page="style.jsp" />
 </head>
 <body>
 <h1><%= "Просмотр и редактирование типа с id=" %><%= request.getQueryString() %>

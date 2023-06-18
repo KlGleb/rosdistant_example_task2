@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Главная</title>
+    <jsp:include page="style.jsp" />
 </head>
 <body>
 <h1><%= "Просмотр и редактирование животного с id=" %><%= request.getQueryString() %>

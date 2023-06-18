@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Создание животного</title>
+    <jsp:include page="style.jsp" />
 </head>
 <body>
 <h1><%= "Создание животного" %>
@@ -14,10 +15,8 @@
 <form action="animals-servlet" method="post" accept-charset="UTF-8">
     <label for="name">Имя:</label>
     <input type="text" id="name" name="name" required><br><br>
-
-    <label for="id_type"> ID типа:</label>
-    <input type="text" id="id_type" name="id_type" required><br><br>
-
+    <label for="name">Тип:</label><br>
+    <jsp:include page="types-selector"/>
     <input type="submit" value="Отправить">
 </form>
 

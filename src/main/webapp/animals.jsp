@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Животные</title>
+    <jsp:include page="style.jsp" />
 </head>
 <body>
 <h1><%= "Животные" %></h1>

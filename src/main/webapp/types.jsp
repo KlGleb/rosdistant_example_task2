@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Типы</title>
+    <jsp:include page="style.jsp" />
 </head>
 <body>
 <h1><%= "Типы" %>
