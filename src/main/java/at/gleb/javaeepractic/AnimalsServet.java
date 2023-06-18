@@ -4,6 +4,7 @@ import at.gleb.javaeepractic.data.AnimalDto;
 import at.gleb.javaeepractic.data.AnimalTypeDto;
 import at.gleb.javaeepractic.data.AnimalsGetter;
 import at.gleb.javaeepractic.di.Dependencies;
+import at.gleb.javaeepractic.util.QueryStringParser;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,6 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "animalsServlet", value = "/animals-servlet")
 public class AnimalsServet extends HttpServlet {
@@ -31,7 +33,10 @@ public class AnimalsServet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         final AnimalsGetter animalsGetter = Dependencies.getInstance().getAnimalsGetter();
 
-        List<AnimalDto> animals = animalsGetter.getAnimals(null, null);
+        Map<String, String> queryParams = QueryStringParser.parseQueryString(req.getQueryString());
+        String typeId = queryParams.get("id_type");
+        String name = queryParams.get("name");
+        List<AnimalDto> animals = animalsGetter.getAnimals(name == null || name.equals("") ? null : name, (typeId != null && !typeId.equals("")) ? Integer.parseInt(typeId) : null);
 
         List<AnimalTypeDto> types = Dependencies.getInstance().getAnimalsTypeGetter().getTypes(null, null);
         HashMap<Integer, String> typeNamesMap = new HashMap<>();

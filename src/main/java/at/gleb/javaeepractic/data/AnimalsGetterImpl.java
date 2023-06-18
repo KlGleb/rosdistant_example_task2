@@ -31,7 +31,7 @@ public class AnimalsGetterImpl implements AnimalsGetter {
             }
 
             if (typeId != null) {
-                selectSql += " AND typeId = ?";
+                selectSql += " AND type_id = ?";
             }
 
             PreparedStatement selectStatement = connection.prepareStatement(selectSql);

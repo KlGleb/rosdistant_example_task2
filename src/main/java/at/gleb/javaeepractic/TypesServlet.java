@@ -5,11 +5,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import at.gleb.javaeepractic.data.AnimalDto;
 import at.gleb.javaeepractic.data.AnimalTypeDto;
 import at.gleb.javaeepractic.di.Dependencies;
+import at.gleb.javaeepractic.util.QueryStringParser;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -27,7 +29,11 @@ public class TypesServlet extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
 
-        List<AnimalTypeDto> types = Dependencies.getInstance().getAnimalsTypeGetter().getTypes(null, null);
+        Map<String, String> queryParams = QueryStringParser.parseQueryString(request.getQueryString());
+        String approxCount = queryParams.get("approx_count");
+        String name = queryParams.get("name");
+
+        List<AnimalTypeDto> types = Dependencies.getInstance().getAnimalsTypeGetter().getTypes(name == null || name.equals("") ? null : name, approxCount == null || approxCount.equals("") ? null : Integer.parseInt(approxCount));
 
         PrintWriter out = response.getWriter();
         out.println("<table>");
