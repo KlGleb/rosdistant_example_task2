@@ -63,7 +63,7 @@ public class AnimalsServet extends HttpServlet {
             out.println("<tr>");
             out.println("<td>" + animal.getId() + "</td>");
             out.println("<td><a href='animal.jsp?" + animal.getId() + "'>" + animal.getName() + "</a></td>");
-            out.println("<td>" + typeNamesMap.get(animal.getTypeId()) + "</td>");
+            out.println("<td> <a href='type.jsp?" + animal.getTypeId() + "'>" + typeNamesMap.get(animal.getTypeId()) + "</a></td>");
             out.println("<td>" + deleteForm + "</td>");
             out.println("</tr>");
         }

@@ -43,6 +43,7 @@ public class TypesServlet extends HttpServlet {
         out.println("<td>Название</td>");
         out.println("<td>Приблизительное количество видов</td>");
         out.println("<td>Удалить</td>");
+        out.println("<td>Поиск по типу</td>");
         out.println("</tr>");
 
 
@@ -56,6 +57,7 @@ public class TypesServlet extends HttpServlet {
             out.println("<td><a href='type.jsp?" + type.getId() + "'>" + type.getName() + "</a></td>");
             out.println("<td>" + type.getApproxCount() + "</td>");
             out.println("<td>" + deleteForm + "</td>");
+            out.println("<td> <a href='animals.jsp?id_type=" + type.getId() + "'>Открыть животных этого типа</a></td>");
             out.println("</tr>");
         }
         out.println("</table>");
