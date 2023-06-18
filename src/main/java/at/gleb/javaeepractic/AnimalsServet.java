@@ -57,4 +57,18 @@ public class AnimalsServet extends HttpServlet {
         }
         out.println("</table>");
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        // получаем данные формы
+        final String name = req.getParameter("name");
+        final int typeId = Integer.parseInt(req.getParameter("id_type"));
+
+        // создаем животное с помощью метода createAnimal() из класса AnimalsGetter
+        Dependencies.getInstance().getAnimalsGetter().createAnimal(name, typeId);
+
+        // перенаправляем пользователя на страницу animals.jsp
+        resp.sendRedirect("animals.jsp");
+    }
 }
